@@ -1,27 +1,29 @@
-# phantom_type
-Header for creating phantom types.
+# strong_type
+Create new type from existing type without changing the interface.
+
+You only need to include [strong_type.h](include/strong_type.h).
 
 ## Example
 ```C++
-#include <phantom_type.h>
+#include <strong_type.h>
 #include <iostream>
 
-PHANTOM_TYPE(PhantomInt, int)
+STRONG_TYPE(StrongInt, int);
 
-void print(PhantomInt& x) {
+void print(StrongInt& x) {
 	std::cout << x << std::endl;
 }
 
 int main()
 {
 	int i = -1;
-	PhantomInt pi(1);
+	StrongInt si(1);
 
-	print(pi);
-	//print(i);	// Compilation error, PhantomInt and int are different types
+	print(si);
+	print(i);	// Compilation error, StrongInt and int are different types
 }
 ```
-For more examples see [this](example/example/Source.cpp).
+For more examples see [this](example/example.cpp).
 
 ## License
 MIT
