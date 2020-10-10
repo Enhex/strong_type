@@ -22,9 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-
-#ifndef phantom_type_h
-#define phantom_type_h
+#pragma once
 
 
 #include <type_traits>
@@ -69,6 +67,3 @@ struct type_name : strong_type<value_type> \
 {\
     using strong_type<value_type>::strong_type;\
 }
-
-
-#endif//phantom_type_h
