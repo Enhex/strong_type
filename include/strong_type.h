@@ -1,7 +1,7 @@
 /*
 The MIT License (MIT)
 
-Copyright (c) 2017 Yehonatan Ballas
+Copyright (c) 2017-2020 Yehonatan Ballas
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -59,9 +59,7 @@ struct strong_type
 template <typename T>
 struct strong_type<T, typename std::enable_if_t<std::is_class_v<T>>> : T
 {
-	strong_type() = default;
-	constexpr explicit strong_type(const T& value) : T(value) {}
-	constexpr strong_type(T&& value) : T(std::forward<T>(value)) {}
+    using T::T;
 };
 
 
@@ -69,7 +67,7 @@ struct strong_type<T, typename std::enable_if_t<std::is_class_v<T>>> : T
 #define STRONG_TYPE(type_name, value_type) \
 struct type_name : strong_type<value_type> \
 {\
-    using strong_type::strong_type;\
+    using strong_type<value_type>::strong_type;\
 }
 
 
