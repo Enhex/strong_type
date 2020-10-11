@@ -58,6 +58,9 @@ template <typename T>
 struct strong_type<T, typename std::enable_if_t<std::is_class_v<T>>> : T
 {
     using T::T;
+	strong_type() = default;
+	constexpr explicit strong_type(const T& value) : T(value) {}
+	constexpr strong_type(T&& value) : T(std::forward<T>(value)) {}
 };
 
 
@@ -65,5 +68,5 @@ struct strong_type<T, typename std::enable_if_t<std::is_class_v<T>>> : T
 #define STRONG_TYPE(type_name, value_type) \
 struct type_name : strong_type<value_type> \
 {\
-    using strong_type<value_type>::strong_type;\
+	using strong_type<value_type>::strong_type;\
 }
